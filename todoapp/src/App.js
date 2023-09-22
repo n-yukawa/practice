@@ -1,7 +1,15 @@
 import { useState, useRef } from "react";
 import TodoList from "./TodoList";
+import './App.css';
 import { v4 as uuidv4 } from "uuid";
 //uuidのインポートの仕方はドキュメントを確認
+
+//MUIを追加
+import {
+  Button,
+  Container,
+  TextField,
+} from "@mui/material";
 
 function App() {
   const [todos, setTodos] = useState([]);
@@ -44,11 +52,11 @@ function App() {
 
   return (
     //最初のtodosはprops。todosという名前で渡してね。{}の中が渡したい変数名
-    <div>
+    <div className={"wrap-content"}>
       <TodoList todos={todos} toggleTodo={toggleTodo} />
-      <input type="text" ref={todoNameRef} />
-      <button onClick={handleAddTodo}>タスクを追加</button>
-      <button onClick={handleClear}>完了したタスクの削除</button>
+      <input className={"input"} type="text" ref={todoNameRef} />
+      <Button variant="contained" onClick={handleAddTodo}>タスクを追加</Button>
+      <Button variant="outlined" onClick={handleClear}>完了したタスクの削除</Button>
       <div>残りのタスク:{todos.filter((todo) => !todo.completed).length}</div>
     </div>
   );

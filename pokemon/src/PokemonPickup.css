@@ -1,0 +1,8 @@
+.pickup {
+    background-color: #EEE;
+    background-image:
+      radial-gradient(#FFF 20%, transparent 20%),
+      radial-gradient(#FFF 20%, transparent 20%);
+    background-size: 60px 60px;
+    background-position: 0 0, 30px 30px;  
+}

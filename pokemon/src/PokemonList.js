@@ -6,24 +6,22 @@ import Typography from '@mui/material/Typography';
 import { CardActionArea } from '@mui/material';
 import sample from './sample.png';
 
-function PokemonList() {
-  return (
-    <div>
-        <h2>List</h2>
-        <Card sx={{ maxWidth: 150 }}>
+function PokemonList({ name, imageUrl }) {
+
+    return (
+        <Card sx={{ width: 150, height: 200, display: 'inline-block', margin: '0 6px 20px 0' }}>
             <CardActionArea>
                 <CardMedia
                     component="img"
-                    height="100"
-                    image={sample}
-                    alt="sampleimage"
+                    style={{ objectFit: 'cover', width: '100%', height: 150 }}
+                    image={imageUrl}
+                    alt={name}
                 />
                 <CardContent>
-                    name
+                    {name}
                 </CardContent>
             </CardActionArea>
         </Card>
-    </div>
   );
 }
 

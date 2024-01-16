@@ -6,7 +6,7 @@ function PokemonPickup({ id, name, imageUrl }) {
     return (
       <div className='pickup' style={{ padding: '4px 10px 20px 10px' }}>
         <h2>Pickup</h2>
-        <div style={{ height: '250px', padding: '10px 0', display: 'flex', 'align-items': 'center', margin: '0 20%' }}>
+        <div style={{ width:'100%', height: '250px', padding: '10px 0', display: 'flex', 'align-items': 'center', 'justify-content': 'center' }}>
           <img src={imageUrl} 
             style={{ height: 240, margin: '5px 100px 5px 0' }}
           />

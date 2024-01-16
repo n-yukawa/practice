@@ -49,7 +49,7 @@ function PokemonData() {
         />
       )}
 
-      <div style={{ margin: '0 10px 0 10px' }}>
+      <div style={{ margin: '0 10px' }}>
         <h2>List</h2>
         <p>Total Pokemon: {pokemonData.length}</p>
         {pokemonData.map((pokemon, index) => (

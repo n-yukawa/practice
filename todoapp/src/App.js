@@ -5,11 +5,10 @@ import { v4 as uuidv4 } from "uuid";
 //uuidのインポートの仕方はドキュメントを確認
 
 //MUIを追加
-import {
-  Button,
-  Container,
-  TextField,
-} from "@mui/material";
+import { Button } from "@mui/material";
+import Stack from '@mui/material/Stack';
+import AddIcon from '@mui/icons-material/Add';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 function App() {
   const [todos, setTodos] = useState([]);
@@ -50,14 +49,23 @@ function App() {
     setTodos(newTodos);
   };
 
+  const handleDelete = (id) => {
+    setTodos(todos.filter((todo) => todo.id !== id));
+  };
+
   return (
     //最初のtodosはprops。todosという名前で渡してね。{}の中が渡したい変数名
-    <div className={"wrap-content"}>
-      <TodoList todos={todos} toggleTodo={toggleTodo} />
-      <input className={"input"} type="text" ref={todoNameRef} />
-      <Button variant="contained" onClick={handleAddTodo}>タスクを追加</Button>
-      <Button variant="outlined" onClick={handleClear}>完了したタスクの削除</Button>
-      <div>残りのタスク:{todos.filter((todo) => !todo.completed).length}</div>
+    <div className={"main-wrap"}>
+      <h1>Todo List</h1>
+      <div className="input-wrap">
+        <Stack direction="row" spacing={1}>
+          <input type="text" ref={todoNameRef} />
+          <Button size="small" variant="contained" endIcon={<AddIcon style={{marginLeft: -8}}　/>} onClick={handleAddTodo}>タスクを追加</Button>
+          <Button size="small" variant="outlined" endIcon={<DeleteIcon style={{marginLeft: -8}}　/>} onClick={handleClear}>完了したタスクの削除</Button>
+        </Stack>
+      </div>
+      <div className="nokori">残りのタスク: {todos.filter((todo) => !todo.completed).length}</div>
+      <TodoList todos={todos} toggleTodo={toggleTodo} handleDelete={handleDelete} />
     </div>
   );
 }

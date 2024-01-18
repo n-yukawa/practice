@@ -1,9 +1,47 @@
-.wrap-content {
-    margin: 15px;
+h1 {
+    text-align: center;
 }
 
-.input {
-    margin: 5px 5px 5px 0px;
-    width: 200px;
-    height: 30px;
+.input-wrap {
+    width: 600px;
+    height: 28px;
+    margin: 15px auto;
+    display: flex;
+    align-items: center;
+}
+
+
+.input-wrap input {
+    width: 290px;
+}
+
+.nokori {
+    margin: 10px auto;
+    padding-left: 6px;
+    width: 600px;
+}
+
+
+.todo-wrap {
+    margin: 10px auto;
+    width: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.todo-wrap input {
+    margin-right: 8px;
+    height: 20px;
+    width: 20px;
+}
+
+.todo-txt {
+ width: 470px;
+}
+
+.delete-btn {
+    margin: 0 0 0 auto;
+    text-align: center;
+    border-radius: 4px;
 }

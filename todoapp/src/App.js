@@ -53,6 +53,15 @@ function App() {
     setTodos(todos.filter((todo) => todo.id !== id));
   };
 
+  // 優先度を変更する関数
+  const handlePriorityChange = (id, priority) => {
+    setTodos((prevTodos) =>
+      prevTodos.map((todo) =>
+        todo.id === id ? { ...todo, priority: priority } : todo
+      )
+    );
+  };
+
   return (
     //最初のtodosはprops。todosという名前で渡してね。{}の中が渡したい変数名
     <div className={"main-wrap"}>
@@ -65,7 +74,7 @@ function App() {
         </Stack>
       </div>
       <div className="nokori">残りのタスク: {todos.filter((todo) => !todo.completed).length}</div>
-      <TodoList todos={todos} toggleTodo={toggleTodo} handleDelete={handleDelete} />
+      <TodoList todos={todos} toggleTodo={toggleTodo} handleDelete={handleDelete} handlePriorityChange={handlePriorityChange} />
     </div>
   );
 }

@@ -37,7 +37,7 @@ h1 {
 }
 
 .delete-btn {
-    margin-left: auto;
+    margin-left: 8px;
     text-align: center;
 }
 
@@ -73,4 +73,34 @@ h1 {
 
 .select-priority.low {
     background-color: #BFDFFF;
+}
+
+
+/* 期限 */
+.deadline {
+    position: relative;
+}
+
+input[type="date"] {
+    /* margin-right: 8px; */
+    padding: 2px 0;
+    text-align: center;
+}
+
+input[type="date"]::-webkit-inner-spin-button{
+  -webkit-appearance: none;
+}
+input[type="date"]::-webkit-clear-button{
+  -webkit-appearance: none;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator{
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  padding: 0;
+  width: 110px;
+  height: 29px;
+  background: transparent;
+  cursor: pointer;
 }

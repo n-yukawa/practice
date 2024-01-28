@@ -1,10 +1,8 @@
 import { useState, useRef } from "react";
 import TodoList from "./TodoList";
-import './App.css';
+import "./App.css";
 import { v4 as uuidv4 } from "uuid";
-
-import { Button } from "@mui/material";
-import Stack from '@mui/material/Stack';
+import { Stack, Button } from "@mui/material";
 import AddIcon from '@mui/icons-material/Add';
 import DeleteIcon from '@mui/icons-material/Delete';
 

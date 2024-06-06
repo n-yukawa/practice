@@ -1,13 +1,18 @@
-import { useState } from 'react'
-import { Checkbox, Button } from "@mui/material";
+import { useState, useEffect } from 'react'
+import { Checkbox } from "@mui/material";
 import DeleteIcon from '@mui/icons-material/Delete';
 
-const Todo = ({ todo, toggleTodo, handleDelete, handlePriorityChange }) => {
-    const handleTodoClick = () => {
-        toggleTodo(todo.id);
+const Todo = ({ todo, toggleTodo, handleDelete, handleNameChange, handlePriorityChange }) => {
+    const [name, setName] = useState(todo.name);
+    const [deadline, setDeadline] = useState('');
+
+    const handleNameChangeLocal = (e) => {
+        setName(e.target.value)
     };
-    
-    const [ deadline, setDeadline ] = useState('');
+
+    useEffect(() => {
+        setName(todo.name);
+    }, [todo.name]);
 
     const handleDateChange = (e) => {
         setDeadline(e.target.value);
@@ -20,10 +25,18 @@ const Todo = ({ todo, toggleTodo, handleDelete, handlePriorityChange }) => {
                     size="small"
                     checked={todo.completed} 
                     readOnly 
-                    onChange={handleTodoClick}
+                    onChange={() => toggleTodo(todo.id)}
                 />
             </label>
-            <div className="todo-txt">{todo.name}</div>
+
+            <div className="todo-txt">
+                <input 
+                    type="text"
+                    value={name}
+                    onChange={handleNameChangeLocal}
+                    onBlur={() => handleNameChange(todo.id, name)}  // focusが外れたときに変更を保存
+                />
+            </div>
 
             <div>
                 {/* 優先度表示 */}
@@ -46,11 +59,11 @@ const Todo = ({ todo, toggleTodo, handleDelete, handlePriorityChange }) => {
                 />
             </label>
 
-            <div className="delete-btn">
-                <Button size="small" variant="outlined" endIcon={<DeleteIcon style={{marginLeft: -8}} />} onClick={() => handleDelete(todo.id)}>
-                    削除
-                </Button>
-            </div>
+            <DeleteIcon 
+                fontSize="small"
+                sx={{ mx: 1 }}  /* mx: mはmargin、xはleftとright両方 */
+                onClick={() => handleDelete(todo.id)}
+            />
         </div>
     );
 };

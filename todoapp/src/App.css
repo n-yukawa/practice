@@ -10,7 +10,6 @@ h1 {
     align-items: center;
 }
 
-
 .input-wrap input {
     width: 290px;
 }
@@ -20,7 +19,6 @@ h1 {
     padding-left: 6px;
     width: 600px;
 }
-
 
 .todo-wrap {
     margin: 10px auto;
@@ -32,13 +30,26 @@ h1 {
     padding: 4px;
 }
 
+.todo-wrap:hover {
+    background-color: #f9f9f9;
+}
+
 .todo-txt {
     flex: 1; /* 残りの幅を全て使う */
 }
 
-.delete-btn {
-    margin-left: 8px;
-    text-align: center;
+.todo-txt input {
+    margin: 0;
+	padding: 0;
+	background: none;
+	border: none;
+	border-radius: 0;
+	outline: none;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+    width: 100%;
+    align-items: center;
 }
 
 
@@ -82,9 +93,10 @@ h1 {
 }
 
 input[type="date"] {
-    /* margin-right: 8px; */
     padding: 2px 0;
     text-align: center;
+    border: none;
+    background-color: transparent;
 }
 
 input[type="date"]::-webkit-inner-spin-button{
@@ -102,5 +114,6 @@ input[type="date"]::-webkit-calendar-picker-indicator{
   width: 110px;
   height: 29px;
   background: transparent;
+  background-color: transparent;
   cursor: pointer;
 }

@@ -1,23 +1,24 @@
 import { useState, useEffect } from 'react'
-import { Checkbox } from "@mui/material";
+import { Checkbox, IconButton, Tooltip } from "@mui/material";
 import DeleteIcon from '@mui/icons-material/Delete';
 import StarBorderIcon from '@mui/icons-material/StarBorder';
 import StarIcon from '@mui/icons-material/Star';
 
 const label = { inputProps: { 'aria-label': 'Star this task' } };
 
-const Todo = ({ 
-    todo, 
-    toggleTodo, 
-    handleDelete, 
-    handleNameChange, 
-    handlePriorityChange, 
-    starredTasks, 
+const Todo = ({
+    todo,
+    toggleTodo,
+    handleDelete,
+    handleNameChange,
+    handlePriorityChange,
+    starredTasks,
     setStarredTasks,
 }) => {
 
     const [name, setName] = useState(todo.name);
     const [deadline, setDeadline] = useState('');
+    const [tooltipOpen, setTooltipOpen] = useState({ complete: false, star: false });
     const isStarred = starredTasks.includes(todo.id);
 
     const handleNameChangeLocal = (e) => {
@@ -32,24 +33,52 @@ const Todo = ({
         setDeadline(e.target.value);
     };
 
+    const handleTooltipOpen = (type) => {
+        setTooltipOpen((prev) => ({ ...prev, [type]: true }));
+    };
+
+    const handleTooltipClose = (type) => {
+        setTooltipOpen((prev) => ({ ...prev, [type]: false }));
+    };
+
     const handleStarChange = () => {
-        if(isStarred) {
+        if (isStarred) {
             setStarredTasks(starredTasks.filter(id => id !== todo.id)); // スター付きタスクから削除
         } else {
             setStarredTasks([...starredTasks, todo.id]); // スター付きタスクに追加
         }
+        handleTooltipClose('star'); // チェック時にツールチップを閉じる
+    };
+
+    const handleToggleTodo = () => {
+        toggleTodo(todo.id);
+        handleTooltipClose('complete'); // チェック時にツールチップを閉じる
     };
 
     return (
         <div className={`todo-wrap ${todo.completed ? 'completed' : ''}`}>
-            <label>
+            <Tooltip
+                title={todo.completed ? "未完了とする" : "完了とする"}
+                disableInteractive
+                open={tooltipOpen.complete}
+                onOpen={() => handleTooltipOpen('complete')}
+                onClose={() => handleTooltipClose('complete')}
+                slotProps={{
+                    popper: {
+                        modifiers: [{
+                            name: 'offset',
+                            options: { offset: [0, -14], },
+                        },],
+                    },
+                }}
+            >
                 <Checkbox
                     size="small"
                     checked={todo.completed}
                     readOnly
-                    onChange={() => toggleTodo(todo.id)}
+                    onChange={handleToggleTodo}
                 />
-            </label>
+            </Tooltip>
 
             <div className="todo-name">
                 <input
@@ -81,21 +110,49 @@ const Todo = ({
                     onChange={handleDateChange}
                 />
             </label>
-            
-            <DeleteIcon
-                fontSize="small"
-                // sx={{ mx: 1 }}  
-                /* mx: mはmargin、xはleftとright両方 */
-                onClick={() => handleDelete(todo.id)}                
-            />
+
+            <Tooltip
+                title="削除"
+                disableInteractive
+                slotProps={{
+                    popper: {
+                        modifiers: [{
+                            name: 'offset',
+                            options: { offset: [0, -14], },
+                        },],
+                    },
+                }}
+            >
+                <IconButton onClick={() => handleDelete(todo.id)}>
+                    <DeleteIcon
+                        fontSize="small"
+                    />
+                </IconButton>
+            </Tooltip>
             
             <div className={`hover-content ${isStarred ? 'always-visible' : ''}`}>
-                <Checkbox 
-                    size="small"
-                    {...label} icon={<StarBorderIcon />} checkedIcon={<StarIcon />}
-                    checked={isStarred}
-                    onChange={handleStarChange}
-                />
+                <Tooltip
+                    title={isStarred ? "[スター付き] から削除" : "[スター付き] に追加"}
+                    disableInteractive
+                    open={tooltipOpen.star}
+                    onOpen={() => handleTooltipOpen('star')}
+                    onClose={() => handleTooltipClose('star')}
+                    slotProps={{
+                        popper: {
+                            modifiers: [{
+                                name: 'offset',
+                                options: { offset: [0, -14], },
+                            },],
+                        },
+                    }}
+                >
+                    <Checkbox
+                        size="small"
+                        {...label} icon={<StarBorderIcon />} checkedIcon={<StarIcon />}
+                        checked={isStarred}
+                        onChange={handleStarChange}
+                    />
+                </Tooltip>
             </div>
         </div>
     );

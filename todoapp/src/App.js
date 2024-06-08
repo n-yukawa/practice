@@ -8,6 +8,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 
 function App() {
   const [todos, setTodos] = useState([]);
+  const [starredTasks, setStarredTasks] = useState([]); // スター付きのタスクIDを管理
 
   const inputRef = useRef();
 
@@ -69,8 +70,10 @@ function App() {
         todos={todos} 
         toggleTodo={toggleTodo} 
         handleDelete={handleDelete} 
-        handleNameChange={handleNameChange}
+        handleNameChange={handleNameChange} 
         handlePriorityChange={handlePriorityChange} 
+        starredTasks={starredTasks} 
+        setStarredTasks={setStarredTasks} 
       />
     </div>
   );

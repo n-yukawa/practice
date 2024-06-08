@@ -34,11 +34,11 @@ h1 {
     background-color: #f9f9f9;
 }
 
-.todo-txt {
+.todo-name {
     flex: 1; /* 残りの幅を全て使う */
 }
 
-.todo-txt input {
+.todo-name input {
     margin: 0;
 	padding: 0;
 	background: none;
@@ -52,6 +52,14 @@ h1 {
     align-items: center;
 }
 
+.todo-wrap.completed {
+    background-color: #f4f4f4;
+}
+
+input.completed {
+    text-decoration: line-through;
+    color: gray;
+}
 
 /* 優先度 */
 .select-priority {
@@ -100,20 +108,32 @@ input[type="date"] {
 }
 
 input[type="date"]::-webkit-inner-spin-button{
-  -webkit-appearance: none;
+    -webkit-appearance: none;
 }
 input[type="date"]::-webkit-clear-button{
-  -webkit-appearance: none;
+    -webkit-appearance: none;
 }
 
 input[type="date"]::-webkit-calendar-picker-indicator{
-  position: absolute;
-  right: 0px;
-  top: 0px;
-  padding: 0;
-  width: 110px;
-  height: 29px;
-  background: transparent;
-  background-color: transparent;
-  cursor: pointer;
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    padding: 0;
+    width: 110px;
+    height: 29px;
+    background: transparent;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.hover-content {
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.todo-wrap:hover .hover-content,
+.hover-content.always-visible {
+    visibility: visible;
+    opacity: 1;
 }

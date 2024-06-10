@@ -1,25 +1,25 @@
 import { useState, useEffect } from 'react'
 import { Checkbox, IconButton, Tooltip } from "@mui/material";
+import CircleOutlinedIcon from '@mui/icons-material/CircleOutlined';
+import CheckIcon from '@mui/icons-material/Check';
 import DeleteIcon from '@mui/icons-material/Delete';
 import StarBorderIcon from '@mui/icons-material/StarBorder';
 import StarIcon from '@mui/icons-material/Star';
 
-const label = { inputProps: { 'aria-label': 'Star this task' } };
+const label = { inputProps: { 'aria-label': '' } };
 
 const Todo = ({
     todo,
     toggleTodo,
+    toggleStar, 
     handleDelete,
     handleNameChange,
     handlePriorityChange,
-    starredTasks,
-    setStarredTasks,
 }) => {
 
     const [name, setName] = useState(todo.name);
     const [deadline, setDeadline] = useState('');
     const [tooltipOpen, setTooltipOpen] = useState({ complete: false, star: false });
-    const isStarred = starredTasks.includes(todo.id);
 
     const handleNameChangeLocal = (e) => {
         setName(e.target.value)
@@ -41,19 +41,15 @@ const Todo = ({
         setTooltipOpen((prev) => ({ ...prev, [type]: false }));
     };
 
-    const handleStarChange = () => {
-        if (isStarred) {
-            setStarredTasks(starredTasks.filter(id => id !== todo.id)); // スター付きタスクから削除
-        } else {
-            setStarredTasks([...starredTasks, todo.id]); // スター付きタスクに追加
-        }
-        handleTooltipClose('star'); // チェック時にツールチップを閉じる
-    };
-
     const handleToggleTodo = () => {
         toggleTodo(todo.id);
         handleTooltipClose('complete'); // チェック時にツールチップを閉じる
     };
+
+    const handleToggleStar = () => {
+        toggleStar(todo.id);
+        handleTooltipClose('star'); // チェック時にツールチップを閉じる
+    }
 
     return (
         <div className={`todo-wrap ${todo.completed ? 'completed' : ''}`}>
@@ -73,7 +69,9 @@ const Todo = ({
                 }}
             >
                 <Checkbox
+                    {...label} icon={<CircleOutlinedIcon />} checkedIcon={<CheckIcon />}
                     size="small"
+                    sx={{ mx: 1 }}
                     checked={todo.completed}
                     readOnly
                     onChange={handleToggleTodo}
@@ -130,9 +128,9 @@ const Todo = ({
                 </IconButton>
             </Tooltip>
             
-            <div className={`hover-content ${isStarred ? 'always-visible' : ''}`}>
+            <div className={`hover-content ${todo.starred ? 'always-visible' : ''}`}>
                 <Tooltip
-                    title={isStarred ? "[スター付き] から削除" : "[スター付き] に追加"}
+                    title={todo.starred ? "[スター付き] から削除" : "[スター付き] に追加"}
                     disableInteractive
                     open={tooltipOpen.star}
                     onOpen={() => handleTooltipOpen('star')}
@@ -149,8 +147,8 @@ const Todo = ({
                     <Checkbox
                         size="small"
                         {...label} icon={<StarBorderIcon />} checkedIcon={<StarIcon />}
-                        checked={isStarred}
-                        onChange={handleStarChange}
+                        checked={todo.starred}
+                        onChange={handleToggleStar}
                     />
                 </Tooltip>
             </div>

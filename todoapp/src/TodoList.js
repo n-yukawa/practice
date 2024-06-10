@@ -7,8 +7,7 @@ const TodoList = ( {
   handleDelete, 
   handleNameChange, 
   handlePriorityChange, 
-  starredTasks, 
-  setStarredTasks,  
+  toggleStar, 
 }) => {
   
   return (
@@ -16,11 +15,10 @@ const TodoList = ( {
       <Todo 
         todo={todo} 
         toggleTodo={toggleTodo} 
+        toggleStar={toggleStar}
         handleDelete={handleDelete} 
         handleNameChange={handleNameChange} 
         handlePriorityChange={handlePriorityChange} 
-        starredTasks={starredTasks} 
-        setStarredTasks={setStarredTasks} 
       />
     )
   );

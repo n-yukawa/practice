@@ -68,30 +68,30 @@ function App() {
 
   // タイトル編集
   const handleNameChange = (id, newName) => {
-    const newTodos = ((prevTodos) =>
-      prevTodos.map((todo) => 
+    setTodos((prevTodos) => {
+      const newTodos = prevTodos.map((todo) =>
         todo.id === id ? {...todo, name: newName} : todo
-      )
-    );
-    setTodos(newTodos);
-    updateFilteredTodos(newTodos, selectedIndex);
+      );
+      updateFilteredTodos(newTodos, selectedIndex);
+      return newTodos;
+    });
   };
 
   // 優先度を変更する関数
   const handlePriorityChange = (id, priority) => {
-    const newTodos = ((prevTodos) =>
-      prevTodos.map((todo) =>
+    setTodos((prevTodos) => {
+      const newTodos = prevTodos.map((todo) =>
         todo.id === id ? { ...todo, priority: priority } : todo
-      )
-    );
-    setTodos(newTodos);
-    updateFilteredTodos(newTodos, selectedIndex);
+      );
+      updateFilteredTodos(newTodos, selectedIndex);
+      return newTodos;
+    });
   };
 
   const updateFilteredTodos = (todos, index) => {
     switch (index) {
       case 0:
-        setFilteredTodos(todos);
+        setFilteredTodos(todos.filter(todo => !todo.completed));
         break;
       case 1:
         setFilteredTodos(todos.filter(todo => todo.starred));

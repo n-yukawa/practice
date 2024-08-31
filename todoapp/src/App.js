@@ -15,6 +15,7 @@ import {
 import AddIcon from '@mui/icons-material/Add';
 import DeleteIcon from '@mui/icons-material/Delete';
 import MenuIcon from '@mui/icons-material/Menu';
+import { Reorder } from "framer-motion";
 
 function App() {
   const [todos, setTodos] = useState([]);
@@ -26,7 +27,7 @@ function App() {
   const handleAddTodo = () => {
     const name = inputRef.current.value;
     if(name === "") return;
-    const newTodo = {id: uuidv4(), name: name, completed: false, starred: false };
+    const newTodo = {id: uuidv4(), name: name, completed: false, priority: "normal", starred: false };
     const newTodos = [...todos, newTodo];
     setTodos(newTodos);
     inputRef.current.value = null;
@@ -161,14 +162,20 @@ function App() {
 
           {renderCount()}
 
-          <TodoList 
-            todos={filteredTodos} 
-            toggleTodo={toggleTodo} 
-            toggleStar={toggleStar} 
-            handleDelete={handleDelete} 
-            handleNameChange={handleNameChange} 
-            handlePriorityChange={handlePriorityChange} 
-          />
+          <Reorder.Group
+            axis="y"
+            values={todos}
+            onReorder={setTodos}
+          >
+            <TodoList 
+              todos={filteredTodos} 
+              toggleTodo={toggleTodo} 
+              toggleStar={toggleStar} 
+              handleDelete={handleDelete} 
+              handleNameChange={handleNameChange} 
+              handlePriorityChange={handlePriorityChange} 
+            />
+          </Reorder.Group>
         </div>
       </div>
     </>

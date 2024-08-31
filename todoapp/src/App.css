@@ -17,6 +17,48 @@
     padding: 24px;
 }
 
+ul,
+li {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+ul {
+    /* position: relative; */
+    /* width: 600px; */
+}
+
+li {
+    /* border-radius: 10px;
+    margin-bottom: 10px;
+    width: 100%;
+    padding: 15px 18px; */
+    /* position: relative; */
+    /* background: white; */
+    /* border-radius: 5px; */
+    /* display: flex; */
+    /* justify-content: space-between; */
+    /* align-items: center; */
+    /* flex-shrink: 0; */
+    /* cursor: grab; */
+}
+
+.refresh {
+    padding: 10px;
+    position: absolute;
+    background: rgba(0, 0, 0, 0.4);
+    border-radius: 10px;
+    width: 20px;
+    height: 20px;
+    top: 10px;
+    right: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
 .input-wrap {
     width: 600px;
     height: 28px;
@@ -29,7 +71,9 @@
     width: 290px;
 }
 
-.count-incomplete, .count-starred, .count-completed {
+.count-incomplete,
+.count-starred,
+.count-completed {
     width: 600px;
     margin: 10px auto;
     padding: 0 6px;
@@ -43,6 +87,7 @@
     border-radius: 3px;
     box-shadow: 0 2px 10px -3px rgba(0, 0, 0, 0.1);
     padding: 4px;
+    cursor: grab;
 }
 
 .todo-wrap:hover {
@@ -50,7 +95,8 @@
 }
 
 .todo-name {
-    flex: 1; /* 残りの幅を全て使う */
+    flex: 1;
+    /* 残りの幅を全て使う */
 }
 
 .todo-name input {
@@ -125,7 +171,8 @@ input[type="date"] {
 input[type="date"]::-webkit-inner-spin-button {
     -webkit-appearance: none;
 }
-input[type="date"]::-webkit-clear-button{
+
+input[type="date"]::-webkit-clear-button {
     -webkit-appearance: none;
 }
 

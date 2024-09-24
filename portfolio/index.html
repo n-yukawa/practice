@@ -3,19 +3,31 @@
   <head>
     <meta charset="utf-8">
     <title>Portfolio</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="responsive.css">
   </head>
   <body>
     <div class="main-wrapper">
         <div class="top-wrapper">
-            <header>
-                <div class="logo">Nekota Koharu</div>
-                <ul>
-                    <li>Service</li>
-                    <li>Works</li>
-                    <li>About</li>
-                </ul>
-                <div class="btn">Contact</div>
+            <header class="header-bg">
+                <div class="header-contents">
+                    <h1>Nekota Koharu</h1>
+                    <nav class="header-nav">
+                        <ul class="header-nav-lists">
+                            <li><a class="nav-link" href="">Service</a></li>
+                            <li><a class="nav-link" href="">Works</a></li>
+                            <li><a class="nav-link" href="">About</a></li>
+                        </ul>
+                    </nav>
+                    <div class="responsive-btn">
+                        <span class="circle"></span>
+                        <div class="menu-line"></div>
+                        <div class="menu-line"></div>
+                        <div class="menu-line"></div>
+                    </div>
+                    <div class="cta-btn">Contact</div>
+                </div>
             </header>
 
             <div class="top-contents">
@@ -123,5 +135,6 @@
     <footer> 
         <p>© Nekota Koharu</p>
     </footer>
-  </body>
+    <script src="script.js"></script> 
+</body>
 </html>

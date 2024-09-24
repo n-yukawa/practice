@@ -1,7 +1,17 @@
-body {
+/* Reset style */
+* {
     margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    color: #000;
+    list-style: none;
+    text-decoration: none;
+}
+
+body {
     font-family: "Noto Sans JP";
     max-width: 1440px;
+    width: 100%;
 }
 
 .main-wrapper {
@@ -10,71 +20,15 @@ body {
     row-gap: 160px;
 }
 
-
-/* .top-wrapper */
-.top-wrapper {
-    height: 720px;
-    background-image: url(./image/MV.png);
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
+a {
+    text-decoration: none;
+    color: #000;
 }
 
-header {
-    max-width: 1440px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 24px 40px;
+a:hover {
+    color: #2FAC9E;
+    transition: all .5s;
 }
-
-header .logo {
-    float: left;
-    font-size: 24px;
-    font-weight: bold;
-}
-
-header ul {
-    margin-left: auto;
-    margin-right: 48px;
-}
-
-header li {
-    float: right;
-    list-style: none;
-    padding: 10px 0px 10px 40px;
-    font-size: 16px;
-}
-
-.btn {
-    display: inline-block;
-    color: white;
-    background-color: #296A65;
-    font-size: 16px;
-    padding: 10px 48px;
-    border-radius: 50px;
-}
-
-.btn:hover {
-    background-color: #2FAC9E;
-    transition: all 1s;
-}
-
-.top-contents p {
-    text-align: center;
-}
-
-.top-contents .name {
-    font-size: 64px;
-    color: white;
-    margin: 126px 0px 16px 0px;
-}
-
-.top-contents .message {
-    font-size: 14px;
-    color: white;
-}
-
 
 /* .section-title */
 .section-title {
@@ -95,12 +49,106 @@ header li {
 }
 
 
+/* .top-wrapper */
+.top-wrapper {
+    height: 720px;
+    background-image: url(./image/MV.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.header-bg {
+    width: 100%;
+    height: 94px;
+}
+
+.header-contents {
+    max-width: 1440px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px 40px;
+}
+
+.header-contents h1 {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.header-nav {
+    margin-left: auto;
+}
+
+.header-nav-lists {
+    display: flex;
+    font-size: 16px;
+    gap: 40px;
+    list-style: none;
+}
+
+/* Responsive menu button */
+.responsive-btn {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    margin-left: auto;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    cursor: pointer;
+    position: relative;
+    z-index: 10;
+}
+  
+.menu-line {
+    background: #323232;
+    border-radius: 5px;
+    width: 100%;
+    height: 2px;
+    margin: 3px 0;
+}
+
+.cta-btn {
+    display: inline-block;
+    color: white;
+    background-color: #296A65;
+    font-size: 16px;
+    margin-left: 48px;
+    padding: 10px 48px;
+    border-radius: 50px;
+}
+
+.cta-btn:hover {
+    background-color: #2FAC9E;
+    transition: all .5s;
+}
+
+.top-contents p {
+    text-align: center;
+}
+
+.top-contents .name {
+    font-size: 64px;
+    color: white;
+    margin: 126px 0px 16px 0px;
+}
+
+.top-contents .message {
+    font-size: 14px;
+    color: white;
+}
+
+
 /* Service */
 .service-contents {
     display: flex;
     justify-content: center;
     column-gap: 64px;
     text-align: center;
+    margin: 0px 32px;
 }
 
 .service-item {
@@ -214,10 +262,13 @@ header li {
 }
 
 .about-contents img {
-    width: 200px;
-    height: 200px;
+    max-width: 200px;
+    max-height: 200px;
+    width: 100%;
+    height: auto;
     box-shadow: 2px 4px 4px 0px #CCC;
     border-radius: 50%;
+    margin: 0 32px;
 }
 
 .about-text h3 {
@@ -229,7 +280,7 @@ header li {
 
 .about-text {
     font-size: 16px;
-    width: 480px;
+    max-width: 480px;
     margin-left: 64px;
 }
 
